@@ -1,0 +1,156 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+h2{
+  
+
+font-family: 'Inknut Antiqua';
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 83px;
+color: #6A645A;
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+.texte{
+padding-top: 5%;
+padding-right: 5% ;    
+font-family: 'Inknut Antiqua';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 25px;
+
+color: #6A645A;
+
+}
+
+.photo{
+    background-color: #E3CD8B;
+}
+main {
+    background-color: #D4D2CB;
+    flex-grow: 1;
+    text-align: justify;
+}
+
+.navbar {
+    background-color: #5D7052DC;
+}
+
+.navbar-nav .nav-link {
+    color: #5D7052DC;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFFFFF;
+}
+
+footer {
+    background-color: #6A645A;
+    color: #FFFFFF;
+    padding: 1rem;
+    text-align: center;
+}
+
+.content {
+    padding: 2rem;
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+.photos .large {
+    grid-column: span 2;
+}
+
+.photos img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: black;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#map{
+    min-height: 700px;
+}
+
+.login-box{
+    height: 500px;
+}
+
+.button-map * {
+    border-radius: 8px;
+    border: none;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.btn-one, .btn-one-pred{
+    background-color: #E3CD8B;
+}
+
+.btn-two, .btn-two-pred{
+    background-color: #F0BE86;
+}
+
+#table-over {
+    max-height: 500px; /* or any height you prefer */
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+#carouselIndicators
+{
+    padding: 2%;
+    background-color: #E3CD8B;
+    border-radius: 10px;
+}
+#actuel
+{
+    background-color: #F0BE86;
+    border-radius: 10px;
+
+}
+#attend
+{
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    
+}
+.nav-item
+{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+#menu-left
+{
+    width: 100%;
+   
+}

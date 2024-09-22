@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: Projet Web A3
+  description: API de l'application de gestion d'arbre de la ville de Saint-Quentin
+  version: '1.0'
+tags:
+  - name: user
+    description: Authentification de l'utilisateur
+  - name: arbre
+    description: Arbres de la ville de Saint-Quentin
+  - name: stadedev
+    description: Stade de développement
+  - name: etat
+    description: État de l'arbre
+  - name: secteur
+    description: Secteur de l'arbre
+  - name: type_pied
+    description: Type du pied de l'arbre
+  - name: type_port
+    description: Type de coupe & d'entretien pour l'arbre
+  - name: espece
+    description: Espèce de l'arbre
+paths:
+  /projet-web-a3/src/php/request.php/user/login:
+    get:
+      tags:
+        - user
+      summary: Connecte l'utilisateur
+      responses:
+        '200':
+          description: Connexion réussite
+        '400':
+          description: Mauvaise requête
+        '404':
+          description: Utilisateur non trouvé
+  /projet-web-a3/src/php/request.php/user:
+    post:
+      tags:
+        - user
+      summary: Créer un nouvel utilisateur
+      parameters:
+        - name: username
+          in: query
+          required: true
+          description: Identifiant de l'utilisateur
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: Mot de passe de l'utilisateur
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Création réussite
+        '400':
+          description: Mauvaise requête
+    put:
+      tags:
+        - user
+      summary: Met à jour les informations de l'utilisateur
+      description: Seulement pour l'utilisateur authentifié
+      responses:
+        '204':
+          description: Modification réussite
+        '400':
+          description: Mauvaise requête
+        '401':
+          description: Non authorisé
+    delete:
+      tags:
+        - user
+      summary: Supprime le compte de l'utilisateur
+      description: Seulement pour l'utilisateur authentifié
+      responses:
+        '204':
+          description: Suppression réussite
+        '400':
+          description: Mauvaise requête
+        '401':
+          description: Non authorisé
+  /projet-web-a3/src/php/request.php/arbre:
+    get:
+      tags:
+        - arbre
+      summary: Retourne la liste des arbres avec leurs informations
+      responses:
+        '200':
+          description: Requête réussite
+        '400':
+          description: Mauvaise requête
+    post:
+      tags:
+        - arbre
+      summary: Ajoute un arbre à la liste des arbres
+      description: Seulement si l'utilisateur est authentifié
+      parameters:
+        - name: longitude
+          in: query
+          required: true
+          description: Longitude de l'arbre
+          schema:
+            type: number
+        - name: latitude
+          in: query
+          required: true
+          description: Latitude de l'arbre
+          schema:
+            type: number
+        - name: haut_tot
+          in: query
+          required: true
+          description: Hauteur totale de l'arbre
+          schema:
+            type: number
+        - name: haut_tronc
+          in: query
+          required: true
+          description: Hauteur du tronc de l'arbre
+          schema:
+            type: number
+        - name: tronc_diam
+          in: query
+          required: true
+          description: Diamètre du tronc
+          schema:
+            type: integer
+        - name: prec_estim
+          in: query
+          required: true
+          description: Précédente estimation
+          schema:
+            type: integer
+        - name: nbr_diag
+          in: query
+          required: true
+          description: Nombre de diagonale
+          schema:
+            type: integer
+        - name: remarquable
+          in: query
+          required: true
+          description: Arbre remarquable ou non
+          schema:
+            type: boolean
+        - name: fk_espece
+          in: query
+          required: true
+          description: Espèce de l'arbre
+          schema:
+            type: string
+        - name: fk_port
+          in: query
+          required: true
+          description: Type de coupe / entretien de l'arbre
+          schema:
+            type: string
+        - name: fk_pied
+          in: query
+          required: true
+          description: Type de pied de l'arbre
+          schema:
+            type: string
+        - name: fk_secteur
+          in: query
+          required: true
+          description: Secteur de l'arbre
+          schema:
+            type: string
+        - name: fk_etat
+          in: query
+          required: true
+          description: État de l'arbre
+          schema:
+            type: string
+        - name: fk_stadedev
+          in: query
+          required: true
+          description: Stade de développement de l'arbre
+          schema:
+            type: string
+        - name: username
+          in: query
+          required: true
+          description: Nom de l'utilisateur ayant ajouté l'arbre
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Arbre créer
+        '400':
+          description: Mauvaise requête
+        '401':
+          description: Non authorisé
+        '409':
+          description: Arbre déjà existant
+  /projet-web-a3/src/php/request.php/arbre/{id}:
+    get:
+      tags:
+        - arbre
+      summary: Retourne la liste des arbres avec leurs informations
+      parameters:
+        - name: id
+          in: path
+          description: id de l'arbre à afficher
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Requête réussite
+        '400':
+          description: Mauvaise requête
+  /projet-web-a3/src/php/request.php/arbre/cluster:
+    get:
+      tags:
+        - arbre
+      summary: Retourne la liste des arbres par cluster
+      responses:
+        '200':
+          description: Requête réussite
+        '400':
+          description: Mauvaise requête
+  /php/request.php/arbre/pred-age/{id}:
+    get:
+      tags:
+        - arbre
+      summary: Retourne les informations d'un arbre + la prédiction de son âge
+      parameters:
+        - name: id
+          in: path
+          description: id de l'arbre dont l'âge doit être prédit
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Requête réussite
+        '400':
+          description: Mauvaise requête
+  /projet-web-a3/src/php/request.php/arbre/pred-deracinnement/{id}:
+    get:
+      tags:
+        - arbre
+      summary: Retourne les informations d'un arbre + la prédiction de son déracinnement
+      parameters:
+        - name: id
+          in: path
+          description: id de l'arbre dont le déracinnement doit être prédit
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Requête réussite
+        '400':
+          description: Mauvaise requête
+  /projet-web-a3/src/php/request.php/stadedev:
+    get:
+      tags:
+        - stadedev
+      summary: Retourne les différents états de développement
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+  /projet-web-a3/src/php/request.php/etat:
+    get:
+      tags:
+        - etat
+      summary: Retourne les différents états
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+  /projet-web-a3/src/php/request.php/secteur:
+    get:
+      tags:
+        - secteur
+      summary: Retourne les différents secteur
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+  /projet-web-a3/src/php/request.php/pied:
+    get:
+      tags:
+        - type_pied
+      summary: Retourne les différents type de pieds
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+  /projet-web-a3/src/php/request.php/port:
+    get:
+      tags:
+        - type_port
+      summary: Retourne les différents type de coupe / entretien
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+  /projet-web-a3/src/php/request.php/espece:
+    get:
+      tags:
+        - espece
+      summary: Retourne les différentes espèces
+      responses:
+        '200':
+          description: Requête réussite
+        '404':
+          description: Éléments non trouvés
+servers:
+  - url: etu0126.projets.isen-ouest.fr
+    variables: {}
